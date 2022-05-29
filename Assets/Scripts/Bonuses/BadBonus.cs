@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+using Random = UnityEngine.Random;
 
 namespace Maze
 {
@@ -9,20 +12,21 @@ namespace Maze
         private float _heightFly;
         private float _speedRotation;
 
-        private void Awake()
+        protected override void Awake()
         {
-            _heightFly = Random.Range(1f, 5f);
-            _speedRotation = Random.Range(12f, 40f);
+            base.Awake();
+            _heightFly = Random.Range(1f, 2f);
+            _speedRotation = Random.Range(5f, 15f);
         }
 
         public void Fly()
         {
-            _transform.position = new Vector3(_transform.position.x, Mathf.PingPong(Time.time, _heightFly), _transform.position.z);
+            _transform.position = new Vector3(_transform.position.x, Mathf.PingPong(Time.fixedTime, _heightFly), _transform.position.z);
         }
 
         public void Rotate()
         {
-            _transform.Rotate(Vector3.up * (Time.deltaTime * _speedRotation), Space.World);
+            _transform.Rotate(Vector3.up * (Time.fixedDeltaTime * _speedRotation), Space.World);
         }
 
         public override void Update()

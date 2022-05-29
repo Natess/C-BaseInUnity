@@ -7,6 +7,8 @@ namespace Maze
     public abstract class Bonus : BaseClass, IExecute
     {
         private bool _isInteractable;
+        protected Color _color;
+
         public bool IsInteractable
         {
             get => _isInteractable;
@@ -18,19 +20,21 @@ namespace Maze
             }
         }
 
-        private void Awake()
-        {
-            _transform = GetComponent<Transform>();
-        }
-
         void Start()
         {
             IsInteractable = true;
+
+            _color = Random.ColorHSV();
+
+            if (TryGetComponent(out Renderer renderer))
+            {
+                renderer.sharedMaterial.color = _color;
+            }
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if(other.CompareTag("Player"))
+            if(IsInteractable && other.CompareTag("Player"))
             {
                 Interaction();
                 IsInteractable=false;

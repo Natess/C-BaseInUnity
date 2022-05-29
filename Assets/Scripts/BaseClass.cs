@@ -11,5 +11,12 @@ namespace Maze
     {
         [SerializeField] protected Rigidbody _rb;
         [SerializeField] protected Transform _transform;
+
+        protected virtual void Awake()
+        {
+            _transform = GetComponent<Transform>();
+            if (GetComponent<Rigidbody>() != null)
+                _rb = GetComponent<Rigidbody>();
+        }
     }
 }
