@@ -13,6 +13,16 @@ namespace Maze
         public object Current => _interactiveObjects[_index];
         public int Length => _interactiveObjects.Length;
 
+        public ListExecuteObject()
+        {
+            Bonus[] bonusObjects  = UnityEngine.Object.FindObjectsOfType<Bonus>();
+            foreach (var b in bonusObjects)
+            {
+                if (b is IExecute exObj)
+                    Add(exObj);
+            }
+        }
+
         public bool MoveNext()
         {
             if(_index == Length-1)

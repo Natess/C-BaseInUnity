@@ -7,15 +7,25 @@ namespace Maze
 {
     public sealed class Player : Unit
     {
-        [SerializeField] private int _points;
+        public float Speed
+        {
+            get { return _speed; }
+            set
+            {
+                if (value < 1f)
+                    _speed = 1f;
+                else if (value > 10f)
+                    _speed = 10f;
+                else _speed = value;
+            }
+        }
 
         protected override void Awake()
         {
             base.Awake();
-            
+
             _isDead = false;
             _health = 100;
-            _points = 0;
         }
 
         void Update()
@@ -35,18 +45,5 @@ namespace Maze
             }
         }
 
-        internal void SetSpeed(float speedModifier)
-        {
-            _speed *= speedModifier;
-            if(_speed < 1f)
-                _speed = 1f;
-            if (_speed > 10f)
-                _speed = 10f;
-        }
-
-        internal void AddPoints(int points)
-        {
-            _points += points;
-        }
     }
 }
