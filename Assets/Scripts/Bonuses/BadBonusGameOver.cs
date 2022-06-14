@@ -11,6 +11,13 @@ namespace Maze
     {
         public event Action<string, Color> OnCaughtPlayer = delegate (string str, Color color) { };
 
+        protected override void Awake()
+        {
+            base.Awake();
+
+            BonusType = BonusType.BadBonusGameOver;
+        }
+
         protected override void Interaction()
         {
             OnCaughtPlayer?.Invoke(gameObject.name, _color);

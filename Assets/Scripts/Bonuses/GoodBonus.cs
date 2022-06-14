@@ -8,12 +8,13 @@ namespace Maze
     public class GoodBonus : Bonus, IFly, IFlicker
     {
         private float _heightFly = 3f;
-        [SerializeField]private Material _material;
+        [SerializeField]private Material _material; 
 
         protected override void Awake()
         {
             base.Awake();
             _material = GetComponent<Renderer>().material;
+            BonusType = BonusType.GoodBonus;
         }
 
         public override void Update()

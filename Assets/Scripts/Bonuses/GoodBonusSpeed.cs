@@ -16,6 +16,7 @@ namespace Maze
         {
             base.Awake();
             SpeedModifier = Random.Range(1.2f, 1.7f);
+            BonusType = BonusType.GoodBonusSpeed;
         }
 
         protected override void Interaction()

@@ -1,11 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 namespace Maze
 {
+    public struct BonusData
+    {
+        public BonusType BonusType;
+        public bool IsInteractable;
+        public SVect3 BonusPosition;
+    }
+
     public abstract class Bonus : BaseClass, IExecute
     {
+        public Vector3 Position { get => _transform.position; }
+        public BonusType BonusType { get; set; }
+
         private bool _isInteractable;
         protected Color _color;
 
@@ -44,5 +55,16 @@ namespace Maze
         protected abstract void Interaction();
 
         public abstract void Update();
+    }
+
+    public enum BonusType
+    {
+        GoodBonus = 100,
+        GoodBonusAddPoint = 101,
+        GoodBonusSpeed = 102,
+
+        BadBonus = 200,
+        BadBonusGameOver = 201,
+        BadBonusSpeed = 202
     }
 }
