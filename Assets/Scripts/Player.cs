@@ -18,6 +18,8 @@ namespace Maze
         PlayerData SinglePlayerData = new PlayerData();
         private ISaveData<PlayerData> _saveData;
 
+        [SerializeField]
+        Transform PlayerDot;
         public float Speed
         {
             get { return _speed; }
@@ -56,6 +58,7 @@ namespace Maze
             {
                 Debug.Log("No Rigidbody");
             }
+            PlayerDot.position = new Vector3(_transform.position.x, PlayerDot.position.y, _transform.position.z);
         }
 
         public void SavePlayer()
