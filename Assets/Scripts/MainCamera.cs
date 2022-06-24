@@ -10,7 +10,6 @@ public class MainCamera : MonoBehaviour
 
     private void Awake()
     {
-        _shift = new Vector3(-3, 3, 0);
         _camera = GetComponent<Camera>();
     }
 
@@ -19,9 +18,9 @@ public class MainCamera : MonoBehaviour
         transform.position = outTransdorm.position + _shift + outTransdorm.forward * 0.15f;
     }
 
-    internal void GameOverHandler(string name, Color color)
-    {
-        _camera.fieldOfView = 100f;
-        _camera.backgroundColor = color;
-    }
+    //internal void GameOverHandler(string name, Color color)
+    //{
+    //    _camera.fieldOfView = 100f;
+    //    _camera.backgroundColor = color;
+    //}
 }
