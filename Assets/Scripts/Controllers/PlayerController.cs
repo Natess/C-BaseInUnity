@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Maze
 {
-    internal class PlayerController
+    internal class PlayerController : IExecute
     {
         private int _points;
 
@@ -40,5 +40,13 @@ namespace Maze
         internal int GetPoints() => _points;
 
         internal void SetSpeed(float speedModifier) => _player.Speed *= speedModifier;
+
+        public void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                _player.SavePlayer();
+            }
+        }
     }
 }
