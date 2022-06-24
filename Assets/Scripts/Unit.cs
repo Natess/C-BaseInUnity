@@ -6,7 +6,7 @@ namespace Maze
 {
     public abstract class Unit : BaseClass
     {
-        [SerializeField] protected static float _speed = 5;
+        [SerializeField] protected static float _speed = 4;
         [SerializeField] protected static int _health = 100;
         [SerializeField] protected static bool _isDead;
 

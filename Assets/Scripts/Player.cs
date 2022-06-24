@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,14 +7,15 @@ namespace Maze
 {
     public sealed class Player : Unit
     {
-        void Awake()
+        [SerializeField] private int _points;
+
+        protected override void Awake()
         {
-            _transform = transform;
-            if (GetComponent<Rigidbody>() != null)
-                _rb = GetComponent<Rigidbody>();
+            base.Awake();
             
             _isDead = false;
             _health = 100;
+            _points = 0;
         }
 
         void Update()
@@ -31,6 +33,20 @@ namespace Maze
             {
                 Debug.Log("No Rigidbody");
             }
+        }
+
+        internal void SetSpeed(float speedModifier)
+        {
+            _speed *= speedModifier;
+            if(_speed < 1f)
+                _speed = 1f;
+            if (_speed > 10f)
+                _speed = 10f;
+        }
+
+        internal void AddPoints(int points)
+        {
+            _points += points;
         }
     }
 }
