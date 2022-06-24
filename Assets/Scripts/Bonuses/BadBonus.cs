@@ -17,6 +17,7 @@ namespace Maze
             base.Awake();
             _heightFly = Random.Range(1f, 2f);
             _speedRotation = Random.Range(5f, 15f);
+            BonusType = BonusType.BadBonus; 
         }
 
         public void Fly()
